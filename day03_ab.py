@@ -3,6 +3,9 @@ import aoc
 # data = aoc.getCellsInput(3, force_filepath="inputs/day3_example.txt")
 data = aoc.getCellsInput(3)
 
+# This code is ugly
+# Leaving it in all its messy glory because that is the AoC way
+
 print("\n".join(["".join(row) for row in data]))
 
 gamma = []
