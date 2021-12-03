@@ -4,4 +4,4 @@
 
 import aoc
 
-print(aoc.getInputForDay(1))
+print(aoc.getNumberCellsForDay(3))

@@ -55,3 +55,8 @@ def getLinesForDay(dayNbr, force_filepath=None):
 def getCellsForDay(dayNbr, force_filepath=None):
     linesInput = getLinesForDay(dayNbr, force_filepath)
     return [[c for c in l] for l in linesInput if len(l.strip()) > 0]
+
+
+def getNumberCellsForDay(dayNbr, force_filepath=None):
+    cellsInput = getCellsForDay(dayNbr, force_filepath)
+    return [[int(c) for c in row] for row in cellsInput]
