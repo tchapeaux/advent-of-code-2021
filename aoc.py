@@ -52,6 +52,6 @@ def getLinesForDay(dayNbr, force_filepath=None):
     return [l.strip() for l in raw.strip().split("\n")]
 
 
-def getCellsInput(dayNbr, force_filepath=None):
+def getCellsForDay(dayNbr, force_filepath=None):
     linesInput = getLinesForDay(dayNbr, force_filepath)
     return [[c for c in l] for l in linesInput if len(l.strip()) > 0]
