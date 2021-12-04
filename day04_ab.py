@@ -21,13 +21,6 @@ for line in lines[1:]:
 if len(currentBoard) > 0:
     boards.append(currentBoard)
 
-""" what we want
-marks = [
-    [(1, 2), (2, 1), ]  # board 0 marks
-    etc
-]
-"""
-
 
 def boardHasWon(marksInBoard):
     for x in range(5):
@@ -52,9 +45,19 @@ def getWinValue(board, marksForBoard, drawnNum):
 
 
 def searchWinningBoard():
+    """construct a data structure like
+
+    marks = [
+        [ (1, 2), (2, 1), etc ]  # board 0 marks
+        [ (4, 0), (1, 3), etc ]  # board 1 marks
+        etc
+    ]
+
+    to keep track of the marked numbers
+    """
+
     marks = [[] for b in boards]
     for drawnNumb in drawnNumbers:
-        print("Drawn", drawnNumb)
         for boardIdx, b in enumerate(boards):
             for y in range(len(b)):
                 for x in range(len(b[y])):
@@ -83,7 +86,6 @@ def searchLastWinningBoard():
                     if num == drawnNumb:
                         marks[boardIdx].append((x, y))
                         if boardHasWon(marks[boardIdx]):
-                            print("BOARD HAS WON", boardIdx)
                             wonBoards.append(boardIdx)
                             if len(wonBoards) == len(boards):
                                 return getWinValue(b, marks[boardIdx], drawnNumb)
