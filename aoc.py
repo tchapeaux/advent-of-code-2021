@@ -27,7 +27,8 @@ def urlForDay(dayNbr):
 
 
 def filepathForDay(dayNbr):
-    return f"inputs/day{dayNbr}_input.txt"
+    dayStr = str(dayNbr).rjust(2, "0")
+    return f"inputs/day{dayStr}_input.txt"
 
 
 def getInputForDay(dayNbr, force_filepath=None):

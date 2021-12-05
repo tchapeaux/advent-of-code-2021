@@ -3,7 +3,7 @@ import aoc
 import re
 
 lines = aoc.getLinesForDay(4)
-# lines = aoc.getLinesForDay(4, force_filepath="inputs/day4_example.txt")
+# lines = aoc.getLinesForDay(4, force_filepath="inputs/day04_example.txt")
 
 drawnNumbers = [int(num) for num in lines[0].split(",")]
 boards = []

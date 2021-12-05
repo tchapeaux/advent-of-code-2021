@@ -1,6 +1,6 @@
 import aoc
 
-# data = aoc.getCellsForDay(3, force_filepath="inputs/day3_example.txt")
+# data = aoc.getCellsForDay(3, force_filepath="inputs/day03_example.txt")
 data = aoc.getCellsForDay(3)
 
 # This code is ugly

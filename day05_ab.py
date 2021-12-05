@@ -1,6 +1,6 @@
 import aoc
 
-# data = aoc.getLinesForDay(5, force_filepath="inputs/day5_example.txt")
+# data = aoc.getLinesForDay(5, force_filepath="inputs/day05_example.txt")
 data = aoc.getLinesForDay(5)
 
 
