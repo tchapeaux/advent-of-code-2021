@@ -57,7 +57,7 @@ def doTheCount(instructions, isPart1):
     # """
 
     count_2_or_more = 0
-    for val in occurences.items():
+    for val in occurences.values():
         if val >= 2:
             count_2_or_more += 1
 
