@@ -12,18 +12,9 @@
 
 import os
 
-import requests
-from dotenv import load_dotenv
 
-load_dotenv()
-
-
-YEAR = os.environ["YEAR"]
-AOC_TOKEN = os.environ["AOC_TOKEN"]
-
-
-def urlForDay(dayNbr):
-    return f"https://adventofcode.com/{YEAR}/day/{dayNbr}/input"
+def urlForDay(year, dayNbr):
+    return f"https://adventofcode.com/{year}/day/{dayNbr}/input"
 
 
 def filepathForDay(dayNbr):
@@ -38,7 +29,15 @@ def getInputForDay(dayNbr, force_filepath=None):
 
     filepath = filepathForDay(dayNbr)
     if not os.path.exists(filepath):
-        url = urlForDay(dayNbr)
+        import requests
+        from dotenv import load_dotenv
+
+        load_dotenv()
+
+        YEAR = os.environ["YEAR"]
+        AOC_TOKEN = os.environ["AOC_TOKEN"]
+
+        url = urlForDay(YEAR, dayNbr)
         cookies = dict(session=AOC_TOKEN)
         r = requests.get(url, cookies=cookies)
         with open(filepath, "w") as f:
