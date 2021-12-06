@@ -4,7 +4,7 @@ import aoc
 data = aoc.getInputForDay(6)
 
 # example
-data = "3,4,3,1,2"
+# data = "3,4,3,1,2"
 
 # Part1
 
