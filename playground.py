@@ -5,4 +5,7 @@
 import aoc
 import re
 
-print(aoc.getNumberCellsForDay(6))
+
+a = set("abcd")
+b = set(["a", "b", "c", "d"])
+print(a == b)
