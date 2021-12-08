@@ -3,8 +3,6 @@ import aoc
 data = aoc.getLinesForDay(8)
 # data = aoc.getLinesForDay(8, force_filepath="inputs/day08_example.txt")
 
-# print(data)
-
 
 def sortStr(s):
     """ return a new string with the same letters in alphabetical order """
@@ -14,19 +12,6 @@ def sortStr(s):
 displays = [[sortStr(s) for s in d.split(" | ")[0].split(" ")] for d in data]
 outputs = [[sortStr(s) for s in d.split(" | ")[1].split(" ")] for d in data]
 
-# Which segments are needed for each digit in the baseline case
-DIGIT_MAPPING = [
-    "abcefg",
-    "cf",
-    "acdeg",
-    "acdfg",
-    "bcdf",
-    "abdfg",
-    "abdefg",
-    "acf",
-    "abcdefg",
-    "abcdfg",
-]
 
 # Part 1 -- simply find 1, 4, 7 and 8
 
