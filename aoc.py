@@ -60,3 +60,29 @@ def getCellsForDay(dayNbr, force_filepath=None):
 def getNumberCellsForDay(dayNbr, force_filepath=None):
     cellsInput = getCellsForDay(dayNbr, force_filepath)
     return [[int(c) for c in row] for row in cellsInput]
+
+
+def get4Neighbors(grid, x, y):
+    """ yield x, y, value for all N, S, E, W neighbors"""
+    if y > 0:
+        yield (x, y - 1, grid[y - 1][x])
+    if y < len(grid) - 1:
+        yield (x, y + 1, grid[y + 1][x])
+    if x > 0:
+        yield (x - 1, y, grid[y][x - 1])
+    if x < len(grid[y]) - 1:
+        yield (x + 1, y, grid[y][x + 1])
+
+
+def get8Neighbors(grid, x, y):
+    """ yield x, y, value for all N, S, E, W neighbors as well as NW, NE, SW, SE"""
+    for dy in [-1, 0, 1]:
+        for dx in [-1, 0, 1]:
+            if dy == dx == 0:
+                continue
+            if y + dy < 0 or y + dy > len(grid) - 1:
+                continue
+            if x + dx < 0 or x + dx > len(grid[y]) - 1:
+                continue
+
+            yield (x + dx, y + dy, grid[y + dy][x + dx])
