@@ -65,9 +65,9 @@ for patterns, output in zip(displays, outputs):
     # Hardcode the deduction steps
     # find a by comparing 1 (cf) and 7 (acf)
     a = [c for c in patt_for_7 if c not in patt_for_1][0]
-    # this gives us to candidates for c&f
+    # this gives us two candidates for c & f...
     c_f = [c for c in patt_for_7 if c in patt_for_1]
-    # Which we can differentiate by looking at the 3 patterns of size 6 (all have f, 2 have c)
+    # ...which we can differentiate by looking at the 3 patterns of size 6 (all have f, 2 have c)
     patt6 = [_p for _p in patterns if len(_p) == 6]
     f = [x for x in c_f if all([x in _p for _p in patt6])][0]
     c = [x for x in c_f if x != f][0]
@@ -83,7 +83,7 @@ for patterns, output in zip(displays, outputs):
     e_d_b = [s for s in SEGMENTS if s not in [a, c, f, g]]
     # b is the only one in all segments of size 6
     b = [x for x in e_d_b if all([x in _p for _p in patt6])][0]
-    # d is the only one in all segments of isze 5
+    # d is the only one in all segments of size 5
     patt5 = [_p for _p in patterns if len(_p) == 5]
     d = [x for x in e_d_b if x != b and all([x in _p for _p in patt5])][0]
     # e is the last one
