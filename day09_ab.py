@@ -39,8 +39,8 @@ print("Part 1", riskValuesAcc)
 
 # Part 2
 
-# Each low point corresponds to at least one bassin
-# (in the example we have 1 low point = 1 bassin, but I think there could be more?)
+# Each bassin corresponds to at least one low point
+# (in the example we have 1 bassin = 1 low point, but I think there could be more?)
 # so we will mark neighbors recursively until we cover each bassin
 
 bassins = [set([p]) for p in lowPoints]
