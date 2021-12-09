@@ -8,4 +8,9 @@ import re
 
 a = set("abcd")
 b = set(["a", "b", "c", "d"])
-print(a == b)
+print(a is b)
+
+a = (1, 2)
+b = (1, 3)
+
+print(a is not b)
