@@ -49,10 +49,13 @@ bassins = [set([p]) for p in lowPoints]
 isStillExpanding = [True for _ in lowPoints]
 while any(isStillExpanding):
     for basIdx, bas in enumerate(bassins):
+        if not isStillExpanding[basIdx]:
+            continue
+        isStillExpanding[basIdx] = False  # reset it until we find a new point
+
         # check each member of the bassin and mark neighbors unless they are 9
         marked = set()
         for p in bas:
-            isStillExpanding[basIdx] = False  # reset it until we find a new point
             for neighX, neighY, neighVal in getNeighbors(data, p[0], p[1]):
                 if (neighX, neighY) not in bas and neighVal < 9:
                     marked.add((neighX, neighY))
@@ -63,8 +66,10 @@ while any(isStillExpanding):
                 if (neighX, neighY) in lowPoints:
                     foundLowPointIdx = lowPoints.index((neighX, neighY))
                     if foundLowPointIdx != basIdx:
+                        # If this is printed it means I was right
                         print("TCHAP WAS RIGHT there are merged bassins")
-                        print("Spoiler tchap was not right")
+                        # ⌛ spoiler I was not right
+
                         # merge into ourselves (finder keeper)
                         bas.update(bassins[foundLowPointIdx])
                         # clear previous bassin
@@ -72,7 +77,14 @@ while any(isStillExpanding):
                         isStillExpanding[foundLowPointIdx] = False
         bas.update(marked)
 
+# The above loop is pretty slow, it could be optimized
+# However the solution is found in under 10s, so leaving it as-is
+
 bassinsLength = sorted([len(b) for b in bassins])
 
 
-print(bassinsLength, bassinsLength[-1] * bassinsLength[-2] * bassinsLength[-3])
+print(
+    "Part 2",
+    bassinsLength[-5:],
+    bassinsLength[-1] * bassinsLength[-2] * bassinsLength[-3],
+)
