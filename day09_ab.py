@@ -1,6 +1,7 @@
 import aoc
 
 data = aoc.getCellsForDay(9)
+# data = aoc.getCellsForDay(9, force_filepath="inputs/day09_custom_input.txt")
 
 # convert everything to int
 data = [[int(c) for c in row] for row in data]
@@ -68,10 +69,11 @@ while any(isStillExpanding):
                     if foundLowPointIdx != basIdx:
                         # If this is printed it means I was right
                         print("TCHAP WAS RIGHT there are merged bassins")
-                        # ⌛ spoiler I was not right
+                        # ⌛ spoiler I was not right for the challenge inputs
+                        # so I built my own input
 
                         # merge into ourselves (finder keeper)
-                        bas.update(bassins[foundLowPointIdx])
+                        marked.update(bassins[foundLowPointIdx])
                         # clear previous bassin
                         bassins[foundLowPointIdx] = set()
                         isStillExpanding[foundLowPointIdx] = False
