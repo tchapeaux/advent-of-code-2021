@@ -1,7 +1,7 @@
 import aoc
 
 data = aoc.getCellsForDay(9)
-# data = aoc.getCellsForDay(9, force_filepath="inputs/day09_custom_input.txt")
+# data = aoc.getCellsForDay(9, force_filepath="inputs/day09_custom.txt")
 
 # convert everything to int
 data = [[int(c) for c in row] for row in data]
