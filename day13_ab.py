@@ -34,12 +34,14 @@ for foldIdx, fold in enumerate(folds):
         print("Part 1", len(dots))
 
 
+# Display table
+
 minX = min(d[0] for d in dots)
 maxX = max(d[0] for d in dots)
 minY = min(d[1] for d in dots)
 maxY = max(d[1] for d in dots)
 
-# Display table
+
 tableStr = ""
 for y in range(minY, maxY + 1):
     for x in range(minX, maxX + 1):
