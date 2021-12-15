@@ -7,14 +7,6 @@ start_time = time.time()
 
 cells = aoc.getNumberCellsForDay(15)
 
-print("size", len(cells), len(cells[0]))
-
-
-def manhattanDistance(p1, p2):
-    x1, y1 = p1
-    x2, y2 = p2
-    return abs(y2 - y1) + abs(x2 - x1)
-
 
 # What we want to do (Initial notes before starting):
 # exploring all paths by maintaning a list of "edge" nodes and iterating over the path from shortest to longest
@@ -29,19 +21,32 @@ def manhattanDistance(p1, p2):
 # 1 - Use heuristic to help Dijkstra pick the best "next candidate"
 # 2 - Use a Python heapq to manage the priorities
 
+# This still took 3 minutes to get the answer, so looking into it a bit more and:
+# I removed the heuristic (not useful because in Part 2 we search the whole board anyway)
+# I used the heapq more efficiently (without re-prioritizing at each step)
+# This wastes memory ( :shrug: ), but the solution is found 100x faster, so it seems worth it
+
 
 def getShortestPathValue(cells):
 
+    print("Searching path for grid of size")
+    print(len(cells), "x", len(cells[0]))
+
+    # define constants and data structure
+
+    # Start and Stop cells
     START = (0, 0)
     STOP = (len(cells) - 1, len(cells) - 1)
 
+    # Set containing all "visited" cells
     visited = set()
 
-    # heapq where the items are tuple
-    # item[0] is the distance and item[1] is the node
+    # Dictionary of cell containing current shortest distance known
     shortest_known_distance = {START: 0}
-    priorityQueue = [[manhattanDistance(START, STOP), START]]
+    # heapq of the "frontier", ie. the next cells to visit ordered by priority
+    priorityQueue = [[0, START]]
 
+    # Main loop: explore each cell of the frontier and add new neighbors
     while STOP not in visited:
         if len(visited) % 10000 == 0:
             print(len(visited), time.time() - start_time)
@@ -50,10 +55,11 @@ def getShortestPathValue(cells):
         _, nearest = heapq.heappop(priorityQueue)
         nearestPathValue = shortest_known_distance[nearest]
 
-        # Check neighbors
+        # Check its neighbors
         neighbors = list(aoc.get4Neighbors(cells, nearest[0], nearest[1]))
         for neighX, neighY, value in neighbors:
             neighCoord = (neighX, neighY)
+
             if neighCoord in visited:
                 continue
 
@@ -65,25 +71,18 @@ def getShortestPathValue(cells):
                 or shortest_known_distance[neighCoord] > neighPathValue
             ):
                 shortest_known_distance[neighCoord] = neighPathValue
-
-            # Update priority
-            neighEntry = [x for x in priorityQueue if x[1] == neighCoord]
-            neighPriority = neighPathValue + manhattanDistance(neighCoord, STOP)
-            if len(neighEntry) == 0:
+                # Update priority
+                # Here we simply add a new entry to the heapq
+                # this means duplicate entries are possible, but this is not an
+                # issue as checking an entry a second time will have no effect
                 heapq.heappush(
                     priorityQueue,
-                    [neighPriority, neighCoord],
+                    [neighPathValue, neighCoord],
                 )
-            elif neighEntry[0][0] > neighPriority:
-                neighEntry[0][0] = neighPriority
-                # refresh the heap because we changed a priority manually
-                heapq.heapify(priorityQueue)
 
-        # Marked as visited
+        # Mark cell as visited
         visited.add(nearest)
-        shortest_known_distance[nearest] = nearestPathValue - manhattanDistance(
-            nearest, STOP
-        )
+        shortest_known_distance[nearest] = nearestPathValue
 
     print("Visited", len(visited), "nodes")
     return shortest_known_distance[STOP]
