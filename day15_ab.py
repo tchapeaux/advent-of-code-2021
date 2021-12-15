@@ -1,5 +1,4 @@
 import heapq
-import math
 import time
 
 import aoc
