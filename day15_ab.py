@@ -53,7 +53,6 @@ def getShortestPathValue(cells):
 
         # Check neighbors
         neighbors = list(aoc.get4Neighbors(cells, nearest[0], nearest[1]))
-        # Note: we actually only need to consider RIGHT and BOTTOM neighbor
         for neighX, neighY, value in neighbors:
             neighCoord = (neighX, neighY)
             if neighCoord in visited:
