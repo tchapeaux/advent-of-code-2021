@@ -16,3 +16,10 @@ b = (1, 3)
 print(a is not b)
 
 print([1, 2, 3, 4][2:])
+
+a = "1234567890abcdefgh"
+
+d = "tch"
+
+e, d = (1, 2)
+print(d)
