@@ -87,7 +87,8 @@ def addToBaseline(matchedToBaseline, baseline, scanner):
 
 # CHEAT? Reorder scanners based on looking at the execution
 # so they are always considered once we have enough info to match them
-# """
+# Keeping this commented so the code stays general by default
+"""
 scanners = [
     scanners[0],
     scanners[2],
