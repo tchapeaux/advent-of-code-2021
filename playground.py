@@ -23,3 +23,7 @@ d = "tch"
 
 e, d = (1, 2)
 print(d)
+
+a = (1, 65)
+b = (3, 12)
+print(a + b)
