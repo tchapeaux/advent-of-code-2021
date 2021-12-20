@@ -5,7 +5,10 @@ data = aoc.getInputForDay(20)
 algorithm, inputData = data.split("\n\n")
 
 assert len(algorithm) == 512
-# assert algorithm[0] == "."  # otherwise a square of empties will be lit
+# assert algorithm[0] == "."  # HAHAHA TRICK QUESTION
+# I put the above assert as a "sanity check", but actually it seems to be false on all input!!
+# This means that an infinity of pixels are lit on half the iterations, which requires us to do some magic.
+# Keeping the assert commented as it saved my life 🎖️
 
 litPixels = set()
 
@@ -30,6 +33,10 @@ def get9Around(coord):
 
 
 def doEnhance(litPixels, outOfBoundsValue="."):
+    # Because of the "trick" aspect of the question (see above),
+    # we use another argument to represent the "out of bounds" pixels
+    # this allows us to not have a set of infinite size
+
     newLitPixels = set()
 
     minX = min([c[0] for c in litPixels])
@@ -62,7 +69,7 @@ def doEnhance(litPixels, outOfBoundsValue="."):
     return newLitPixels
 
 
-print(len(litPixels), "lit pixels")
+print("Original data:", len(litPixels), "lit pixels")
 
 savePart1 = None
 currentIteration = litPixels
@@ -76,7 +83,7 @@ for step in range(50):
         savePart1 = len(currentIteration)
 
 
-# Part 1 : 5705 too high
+# Part 1 : 5705 too high because I did not realize the trick part of the question
 
 print("Part 1", savePart1)
 print("Part 2", len(currentIteration))
