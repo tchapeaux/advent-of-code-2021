@@ -9,10 +9,8 @@ dataOpti = aoc.getLinesForDay(24, force_filepath="inputs/day24_cleaned.txt")
 COMPARE_PROGRAMS = True
 
 
-def getRandom14Digits():
-    return int("".join([str(math.floor(random.random() * 9) + 1) for _ in range(14)]))
-
-
+# This is where we validate the list of valid numbers
+# the rest of the code is basically what I used to debug + is still used to validate the answers
 def getAllPossibleValidNumbers():
     valid = [None for _ in range(14)]
 
@@ -20,7 +18,7 @@ def getAllPossibleValidNumbers():
     # Iterate through the special combinations that create a valid modulo comparison
     # which is the only way to decrease z
 
-    # Note: This is basically hardcoded for my input
+    # Note: This is hardcoded for my input
 
     valid[2] = 9
     valid[3] = 1
@@ -68,7 +66,6 @@ class ALU(object):
         }
 
         self.program = program
-        self.initial_inputs = [int(x) for x in inputs]
         self.inputs = [int(x) for x in inputs]
         self.verbose = verbose
 
@@ -109,19 +106,24 @@ class ALU(object):
             self.variables[var1] = 1 if self.variables[var1] != val2 else 0
 
     def run(self):
-        for lineIdx, line in enumerate(self.program):
+        for line in self.program:
             self.execute(line)
             if self.verbose:
                 print(line)
                 print(self.variables)
 
-        return self.variables
-
 
 if COMPARE_PROGRAMS:
 
+    def getRandom14Digits():
+        return int(
+            "".join([str(math.floor(random.random() * 9) + 1) for _ in range(14)])
+        )
+
     # Check that our cleanup of the input is equivalent to the initial input
-    # By throwing random numbers at it and comparing the results
+    # by throwing hardcoded + random numbers at it and comparing the results.
+
+    # The cleaned up input was used to generate the hardcoded "valid number" generator above
 
     def comparePrograms(testNumber):
         xAsStr = str(testNumber)
@@ -134,7 +136,8 @@ if COMPARE_PROGRAMS:
         aluOpti = ALU(dataOpti, [c for c in xAsStr])
         aluOpti.run()
 
-        assert alu.variables["z"] == aluOpti.variables["z"]
+        for var in "wxyz":
+            assert alu.variables[var] == aluOpti.variables[var]
 
     comparePrograms(12345678912312)
 
@@ -147,20 +150,14 @@ if COMPARE_PROGRAMS:
         comparePrograms(testNbr)
 
 
-def doRun(testNumber):
+def isValid(testNumber):
     xAsStr = str(testNumber)
     assert len(xAsStr) == 14, (len(xAsStr), xAsStr)
     assert "0" not in xAsStr
 
-    alu = ALU(dataOpti, [c for c in xAsStr], verbose=False)
+    alu = ALU(data, [c for c in xAsStr], verbose=False)
     alu.run()
-
-    return alu.variables["z"]
-
-
-def isValid(testNumber):
-    result = doRun(testNumber)
-    return result == 0
+    return alu.variables["z"] == 0
 
 
 validNumbers = list(getAllPossibleValidNumbers())
