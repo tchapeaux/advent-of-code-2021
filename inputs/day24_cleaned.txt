@@ -1,34 +1,27 @@
+cmt DIGIT 1
 inp w
 add y w
 add y 1
 add z y
+cmt DIGIT 2
 inp w
-add x z
-mod x 26
-add x 10
-set x 1
-set y 26
-mul z y
+mul z 26
 set y w
 add y 10
-mul y x
 add z y
+cmt DIGIT 3
 inp w
-set x 1
-set y 25
-add y 1
-mul z y
+mul z 26
 set y w
 add y 2
-mul y x
 add z y
+cmt DIGIT 4
 inp w
 set x z
 mod x 26
 div z 26
 add x -10
-eql x w
-eql x 0
+neq x w
 set y 25
 mul y x
 add y 1
@@ -37,47 +30,31 @@ set y w
 add y 5
 mul y x
 add z y
+cmt DIGIT 5
 inp w
 set x 1
-set y 26
-mul z y
+mul z 26
 set y w
 add y 6
 add z y
+cmt DIGIT 6
 inp w
-set x z
-mod x 26
-add x 11
-eql x w
-eql x 0
-set y 25
-mul y x
-add y 1
-mul z y
+mul z 26
 set y w
-mul y x
 add z y
+cmt DIGIT 7
 inp w
-set x z
-mod x 26
-add x 12
-eql x w
-eql x 0
-set y 25
-mul y x
-add y 1
-mul z y
+mul z 26
 set y w
 add y 16
-mul y x
 add z y
+cmt DIGIT 8
 inp w
 set x z
 mod x 26
 div z 26
 add x -11
-eql x w
-eql x 0
+neq x w
 set y 25
 mul y x
 add y 1
@@ -86,13 +63,13 @@ set y w
 add y 12
 mul y x
 add z y
+cmt DIGIT 9
 inp w
 set x z
 mod x 26
 div z 26
 add x -7
-eql x w
-eql x 0
+neq x w
 set y 25
 mul y x
 add y 1
@@ -101,27 +78,19 @@ set y w
 add y 15
 mul y x
 add z y
+cmt DIGIT 10
 inp w
-set x z
-mod x 26
-add x 13
-eql x w
-eql x 0
-set y 25
-mul y x
-add y 1
-mul z y
+mul z 26
 set y w
 add y 7
-mul y x
 add z y
+cmt DIGIT 11
 inp w
 set x z
 mod x 26
 div z 26
 add x -13
-eql x w
-eql x 0
+neq x w
 set y 25
 mul y x
 add y 1
@@ -130,12 +99,12 @@ set y w
 add y 6
 mul y x
 add z y
+cmt DIGIT 12
 inp w
 set x z
 mod x 26
 div z 26
-eql x w
-eql x 0
+neq x w
 set y 25
 mul y x
 add y 1
@@ -144,13 +113,13 @@ set y w
 add y 5
 mul y x
 add z y
+cmt DIGIT 13
 inp w
 set x z
 mod x 26
 div z 26
 add x -11
-eql x w
-eql x 0
+neq x w
 set y 25
 mul y x
 add y 1
@@ -159,12 +128,12 @@ set y w
 add y 6
 mul y x
 add z y
+cmt DIGIT 14
 inp w
 set x z
 mod x 26
 div z 26
-eql x w
-eql x 0
+neq x w
 set y 25
 mul y x
 add y 1

@@ -27,3 +27,7 @@ print(d)
 a = (1, 65)
 b = (3, 12)
 print(a + b)
+
+
+for d in range(1, 10):
+    print(d, ((d + 10) % 26) - 11)
